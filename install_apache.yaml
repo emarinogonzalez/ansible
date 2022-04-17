@@ -4,59 +4,36 @@
   become: true
   tasks:
 
-### Playbook for Debian and Ubuntu ###
-
-  - name: update repository index
+### Playbook for Debian base distributions ###
+  - name: install apache2 package & add php support for apache & update the system
     apt:
+      name: 
+        - apache2
+        - libapache2-mod-php
+      state: latest
       update_cache: yes
     when: ansible_distribution in ["Debian", "Ubuntu"]
 
-  - name: install apache2 package
-    apt:
-      name: apache2
-      state: latest
-    when: ansible_distribution in ["Debian", "Ubuntu"]
+### Playbook for Fedora distribution ###
 
-  - name: add php support for apache
-    apt:
-      name: libapache2-mod-php
-      state: latest
-    when: ansible_distribution in ["Debian", "Ubuntu"]
-
-### Playboot for Fedora ###
-
-  - name: update repository index
+  - name: install apache2 package & add php support for apache & update the system
     dnf:
+      name: 
+        - httpd
+        - php
+      state: latest
       update_cache: yes
     when: ansible_distribution == "Fedora"
 
-  - name: install apache2 package
-    dnf:
-      name: httpd
-      state: latest
-    when: ansible_distribution == "Fedora"
+### Palybook for CentOS distribution ###
 
-  - name: add php support for apache
-    dnf:
-      name: php
-      state: latest
-    when: ansible_distribution == "Fedora"
+  - name: install apache2 package & add php support for apache & update the system
 
-### Palybook for CentOS ###
-
-  - name: update repository index
     yum:
+      name: 
+        - httpd
+        - php
+      state: latest
       update_cache: yes
     when: ansible_distribution == "CentOS"
 
-  - name: install apache2 package
-    yum:
-      name: httpd
-      state: latest
-    when: ansible_distribution == "CentOS"
-
-  - name: add php support for apache
-    yum:
-      name: php
-      state: latest
-    when: ansible_distribution == "CentOS"
