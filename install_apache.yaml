@@ -4,36 +4,10 @@
   become: true
   tasks:
 
-### Playbook for Debian base distributions ###
-  - name: install apache2 package & add php support for apache & update the system
-    apt:
+  - name: install apache package & add php support for apache & update the system
+    package:
       name: 
-        - apache2
-        - libapache2-mod-php
+        - "{{ apache_package }}"
+        - "{{ php_package  }}"
       state: latest
       update_cache: yes
-    when: ansible_distribution in ["Debian", "Ubuntu"]
-
-### Playbook for Fedora distribution ###
-
-  - name: install apache2 package & add php support for apache & update the system
-    dnf:
-      name: 
-        - httpd
-        - php
-      state: latest
-      update_cache: yes
-    when: ansible_distribution == "Fedora"
-
-### Palybook for CentOS distribution ###
-
-  - name: install apache2 package & add php support for apache & update the system
-
-    yum:
-      name: 
-        - httpd
-        - php
-      state: latest
-      update_cache: yes
-    when: ansible_distribution == "CentOS"
-
