@@ -1,5 +1,5 @@
-192.168.243.129
-192.168.243.131
-192.168.243.132
-192.168.243.134
-192.168.243.136
+192.168.243.129 apache_package=apache2 php_package=libapache2-mod-php
+192.168.243.131 apache_package=apache2 php_package=libapache2-mod-php
+192.168.243.132 apache_package=apache2 php_package=libapache2-mod-php
+192.168.243.134 apache_package=httpd php_package=php
+192.168.243.136 apache_package=httpd php_package=php
